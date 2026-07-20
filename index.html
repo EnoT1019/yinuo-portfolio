@@ -1,0 +1,1100 @@
+<meta charset="utf-8">
+<title>Yinuo Tong &mdash; Portfolio</title>
+<style>
+:root {
+  --ink: #111111;
+  --paper: #FAFAF7;
+  --slate: #71706A;
+  --accent: #0047FF;
+  --muted: #DAD9D4;
+  --wash: #F0EFEB;
+  --card-bg: #FFFFFF;
+  --overlay: rgba(17,17,17,0.55);
+
+  --display: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "SF Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, monospace;
+
+  --gap: clamp(0.75rem, 1.8vw, 1.25rem);
+  --section-pad: clamp(4rem, 10vw, 8rem);
+  --content-max: 1200px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ECEAE6;
+    --paper: #0E0E0D;
+    --slate: #908F88;
+    --accent: #5A8AFF;
+    --muted: #282826;
+    --wash: #171716;
+    --card-bg: #1C1C1A;
+    --overlay: rgba(14,14,13,0.6);
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #ECEAE6;
+  --paper: #0E0E0D;
+  --slate: #908F88;
+  --accent: #5A8AFF;
+  --muted: #282826;
+  --wash: #171716;
+  --card-bg: #1C1C1A;
+  --overlay: rgba(14,14,13,0.6);
+}
+:root[data-theme="light"] {
+  --ink: #111111;
+  --paper: #FAFAF7;
+  --slate: #71706A;
+  --accent: #0047FF;
+  --muted: #DAD9D4;
+  --wash: #F0EFEB;
+  --card-bg: #FFFFFF;
+  --overlay: rgba(17,17,17,0.55);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+
+.wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 0;
+  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+nav.scrolled {
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--muted);
+}
+nav .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--body);
+  font-size: 0.875rem;
+  color: var(--slate);
+  transition: color 0.3s var(--ease);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.4s var(--ease);
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 1.5rem 4rem;
+}
+.hero-name {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  text-wrap: balance;
+}
+.hero-subtitle {
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 1.2vw, 0.8125rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 2rem;
+}
+.hero-intro {
+  max-width: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--slate);
+}
+.hero-scroll {
+  margin-top: 3rem;
+  width: 1px;
+  height: 4rem;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: pulse-line 2.5s ease-in-out infinite;
+}
+@keyframes pulse-line {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── Section ── */
+.section {
+  padding: var(--section-pad) 0;
+}
+.section + .section {
+  border-top: 1px solid var(--muted);
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+.section-desc {
+  color: var(--slate);
+  max-width: 38rem;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+/* ── Project Grid ── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+@media (max-width: 900px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+.project-card {
+  display: block;
+  cursor: pointer;
+}
+.project-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--wash);
+}
+.project-thumb-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s var(--ease);
+}
+.project-card:hover .project-thumb-inner {
+  transform: scale(1.04);
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-meta {
+  padding: 1rem 0.125rem;
+}
+.project-meta h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s var(--ease);
+}
+.project-card:hover .project-meta h3 {
+  color: var(--accent);
+}
+.project-tag {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--slate);
+  letter-spacing: 0.04em;
+}
+
+/* ── Featured (wide card) ── */
+.project-grid--featured {
+  grid-template-columns: 1.4fr 1fr;
+}
+.project-grid--featured .project-card:first-child .project-thumb {
+  aspect-ratio: 3 / 2;
+}
+@media (max-width: 700px) {
+  .project-grid--featured { grid-template-columns: 1fr; }
+  .project-grid--featured .project-card:first-child .project-thumb {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Digital research gets 2-col layout */
+.project-grid--wide {
+  grid-template-columns: repeat(2, 1fr);
+}
+.project-grid--wide .project-thumb {
+  aspect-ratio: 16 / 10;
+}
+@media (max-width: 560px) {
+  .project-grid--wide { grid-template-columns: 1fr; }
+}
+
+/* ── About ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+.about-photo {
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(160deg, var(--wash) 0%, var(--muted) 100%);
+  overflow: hidden;
+}
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-text h2 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.about-text p {
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.about-tools {
+  margin-top: 2rem;
+}
+.about-tools-label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.75rem;
+}
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+.tool-list li {
+  font-size: 0.8125rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--muted);
+  color: var(--slate);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.tool-list li:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+/* ── Footer ── */
+footer {
+  padding: var(--section-pad) 0 3rem;
+  border-top: 1px solid var(--muted);
+}
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-left h2 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.footer-left p {
+  color: var(--slate);
+  margin-bottom: 1.5rem;
+}
+.footer-email {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease);
+  padding-bottom: 2px;
+}
+.footer-email:hover {
+  border-bottom-color: var(--accent);
+}
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.875rem;
+  color: var(--slate);
+  transition: color 0.3s var(--ease);
+}
+.footer-links a:hover { color: var(--ink); }
+.footer-copy {
+  margin-top: 4rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* ── Scroll Reveal (JS-enhanced) ── */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.js .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.js .reveal-delay-1 { transition-delay: 0.1s; }
+.js .reveal-delay-2 { transition-delay: 0.2s; }
+.js .reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-scroll { animation: none; }
+  .project-thumb-inner { transition: none; }
+}
+
+/* ── Mobile Nav Toggle ── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 18px;
+  position: relative;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--ink);
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.nav-toggle span:nth-child(3) { bottom: 0; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+@media (max-width: 560px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--paper);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+  .nav-links.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-links a {
+    font-size: 1.25rem;
+    color: var(--ink);
+  }
+}
+
+/* ── Project Detail Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--paper);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+body.modal-open {
+  overflow: hidden;
+}
+.modal-close {
+  position: fixed;
+  top: 1.25rem;
+  right: clamp(1.25rem, 4vw, 2.5rem);
+  z-index: 210;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+.modal-overlay.active .modal-close {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-close::before,
+.modal-close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 1.5px;
+  background: var(--ink);
+}
+.modal-close::before { transform: rotate(45deg); }
+.modal-close::after { transform: rotate(-45deg); }
+.modal-close:hover::before,
+.modal-close:hover::after {
+  background: var(--accent);
+}
+.modal-back {
+  position: fixed;
+  top: 1.25rem;
+  left: clamp(1.25rem, 4vw, 2.5rem);
+  z-index: 210;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: var(--slate);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), color 0.3s var(--ease);
+}
+.modal-overlay.active .modal-back {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-back:hover {
+  color: var(--ink);
+}
+.modal-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
+}
+.modal-header {
+  margin-bottom: 2.5rem;
+}
+.modal-header h2 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.modal-header .project-tag {
+  font-size: 0.75rem;
+}
+.modal-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-gallery img {
+  width: 100%;
+  height: auto;
+}
+.modal-gallery video {
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+</style>
+
+<!-- Navigation -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="#" class="nav-logo">YT</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1 class="hero-name">Yinuo<br>Tong</h1>
+  <p class="hero-subtitle">Architecture &middot; Interactive Design &middot; Digital Research</p>
+  <div class="hero-scroll"></div>
+</section>
+
+<main>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <h2 class="section-title reveal">About</h2>
+      <p class="section-desc reveal" style="margin-bottom:1.25rem;">
+        Architecture graduate from the University of Auckland, interested in
+        the intersection of spatial design, interactive technology, and
+        immersive storytelling. My master&rsquo;s thesis developed a room-scale
+        responsive environment where physical space senses and responds
+        to occupants in real time.
+      </p>
+      <p class="section-desc reveal">
+        Two years as a Teaching Assistant at the Digital Research Hub,
+        developing self-initiated interactive and generative projects
+        alongside supporting students in digital fabrication, design
+        software, and creative workflows.
+      </p>
+      <div class="about-tools reveal">
+        <p class="about-tools-label">Design &amp; Media</p>
+        <ul class="tool-list">
+          <li>Rhino</li>
+          <li>Revit</li>
+          <li>Vectorworks</li>
+          <li>Enscape</li>
+          <li>Lumion</li>
+          <li>Adobe Suite</li>
+        </ul>
+      </div>
+      <div class="about-tools reveal">
+        <p class="about-tools-label">Interactive &amp; Generative</p>
+        <ul class="tool-list">
+          <li>TouchDesigner</li>
+          <li>Unity</li>
+          <li>Stable Diffusion</li>
+          <li>LLM APIs</li>
+          <li>Arduino</li>
+          <li>ESP32</li>
+          <li>OptiTrack</li>
+        </ul>
+      </div>
+      <div class="about-tools reveal">
+        <p class="about-tools-label">Fabrication</p>
+        <ul class="tool-list">
+          <li>Laser Cutting</li>
+          <li>3D Printing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <div id="work">
+
+    <!-- Architecture -->
+    <section class="section">
+      <div class="wrap">
+        <p class="section-label reveal">Architecture</p>
+        <h2 class="section-title reveal">Spatial Design &amp; Built Environment</h2>
+        <p class="section-desc reveal">
+          Projects ranging from immersive responsive environments to community
+          housing and competition entries.
+        </p>
+        <div class="project-grid reveal">
+          <div class="project-card" data-project="living-space-arch">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/living space -1.png" alt="The Living Space">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>The Living Space</h3>
+              <span class="project-tag">Master&rsquo;s Thesis &middot; 2025&ndash;2026</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="relocated-village">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/relocated the village -1.png" alt="Relocated the Village">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Relocated the Village</h3>
+              <span class="project-tag">Architecture</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="ngaringari">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/nagaringari whanau-1 .png" alt="Ngaringari Whanau">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Ngaringari Whanau</h3>
+              <span class="project-tag">Community Housing &middot; Whakatane</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Research -->
+    <section class="section">
+      <div class="wrap">
+        <p class="section-label reveal">Digital Research</p>
+        <h2 class="section-title reveal">Interactive &amp; Computational Design</h2>
+        <p class="section-desc reveal">
+          Projects exploring AI, generative systems, and real-time interactive
+          technology as tools for spatial and creative practice.
+        </p>
+        <div class="project-grid project-grid--wide reveal">
+          <div class="project-card" data-project="living-space-digital">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/living space -1.png" alt="The Living Space">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>The Living Space</h3>
+              <span class="project-tag">AI &middot; Sensors &middot; Projection &middot; Master&rsquo;s Thesis</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="ai-music">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/ai music cover.jpeg" alt="AI Generated Music">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>AI Generated Music</h3>
+              <span class="project-tag">Generative &middot; AI</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="ar-project">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/ar project cover.jpeg" alt="Augmented Reality Project">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Augmented Reality Project</h3>
+              <span class="project-tag">AR &middot; Interactive</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="thermostatic">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/thermostatic space-1.png" alt="Thermostatic Space">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Thermostatic Space</h3>
+              <span class="project-tag">Physical Computing &middot; Interactive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creative Work -->
+    <section class="section">
+      <div class="wrap">
+        <p class="section-label reveal">Creative Work</p>
+        <h2 class="section-title reveal">Drawing, Painting &amp; Fabrication</h2>
+        <p class="section-desc reveal">
+          Hand skills across traditional media and digital fabrication.
+        </p>
+        <div class="project-grid reveal">
+          <div class="project-card" data-project="sketches">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/sketches-1.jpg" alt="Sketches">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Sketches</h3>
+              <span class="project-tag">Charcoal</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="watercolor">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/watercolor-2.jpg" alt="Watercolor">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Watercolor</h3>
+              <span class="project-tag">Watercolor</span>
+            </div>
+          </div>
+          <div class="project-card" data-project="laser-cut">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <img src="images/laser cut.png" alt="Laser Cut Work">
+              </div>
+            </div>
+            <div class="project-meta">
+              <h3>Laser Cut Work</h3>
+              <span class="project-tag">Digital Fabrication &middot; Rhino &middot; Lightburn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-left">
+        <h2 class="reveal">Get in Touch</h2>
+        <p class="reveal">Open to collaborations, commissions, and conversations.</p>
+        <a href="mailto:yinuotongk@gmail.com" class="footer-email reveal">yinuotongk@gmail.com</a>
+      </div>
+      <ul class="footer-links reveal">
+        <li><a href="https://linkedin.com/in/yin-uo-tong-42779b207" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">&copy; 2025 Yinuo Tong. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ═══ Project Detail Modals ═══ -->
+
+<!-- The Living Space (Architecture) -->
+<div class="modal-overlay" id="modal-living-space-arch">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>The Living Space</h2>
+      <span class="project-tag">Master&rsquo;s Thesis &middot; Architecture &middot; 2025&ndash;2026</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/living space -1.png" alt="The Living Space 1">
+      <img src="images/living space -2.png" alt="The Living Space 2">
+      <img src="images/living space -3.png" alt="The Living Space 3">
+      <img src="images/living space -4.png" alt="The Living Space 4">
+      <img src="images/living space -5.png" alt="The Living Space 5">
+      <img src="images/living space -6.png" alt="The Living Space 6">
+      <img src="images/living space -7.png" alt="The Living Space 7">
+      <img src="images/living space -8.png" alt="The Living Space 8">
+      <video controls playsinline preload="metadata">
+        <source src="images/the living space- video.MP4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- Relocated the Village -->
+<div class="modal-overlay" id="modal-relocated-village">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Relocated the Village</h2>
+      <span class="project-tag">Architecture</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/relocated the village -1.png" alt="Relocated the Village 1">
+      <img src="images/relocated the village -2.png" alt="Relocated the Village 2">
+      <img src="images/relocated the village -3.png" alt="Relocated the Village 3">
+      <img src="images/relocated the village -4.png" alt="Relocated the Village 4">
+      <img src="images/relocated the village -5.png" alt="Relocated the Village 5">
+      <img src="images/relocated the village -6.png" alt="Relocated the Village 6">
+      <img src="images/relocated the village -7.png" alt="Relocated the Village 7">
+    </div>
+  </div>
+</div>
+
+<!-- Ngaringari Whanau -->
+<div class="modal-overlay" id="modal-ngaringari">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Ngaringari Whanau</h2>
+      <span class="project-tag">Community Housing &middot; Whakatane</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/nagaringari whanau-1 .png" alt="Ngaringari Whanau 1">
+      <img src="images/nagaringari whanau-2.png" alt="Ngaringari Whanau 2">
+      <img src="images/nagaringari whanau-3.png" alt="Ngaringari Whanau 3">
+      <img src="images/nagaringari whanau-4.png" alt="Ngaringari Whanau 4">
+      <img src="images/nagaringari whanau-5.png" alt="Ngaringari Whanau 5">
+    </div>
+  </div>
+</div>
+
+<!-- Sketches -->
+<div class="modal-overlay" id="modal-sketches">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Sketches</h2>
+      <span class="project-tag">Charcoal</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/sketches-1.jpg" alt="Sketches 1">
+      <img src="images/sketches-2.jpg" alt="Sketches 2">
+    </div>
+  </div>
+</div>
+
+<!-- Watercolor -->
+<div class="modal-overlay" id="modal-watercolor">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Watercolor</h2>
+      <span class="project-tag">Watercolor</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/watercolor-1.jpg" alt="Watercolor 1">
+      <img src="images/watercolor-2.jpg" alt="Watercolor 2">
+    </div>
+  </div>
+</div>
+
+<!-- Laser Cut -->
+<div class="modal-overlay" id="modal-laser-cut">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Laser Cut Work</h2>
+      <span class="project-tag">Digital Fabrication &middot; Rhino &middot; Lightburn</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/laser cut.png" alt="Laser Cut Work">
+    </div>
+  </div>
+</div>
+
+<!-- The Living Space (Digital Research) -->
+<div class="modal-overlay" id="modal-living-space-digital">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>The Living Space</h2>
+      <span class="project-tag">AI &middot; Sensors &middot; Projection &middot; Master&rsquo;s Thesis</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/living space -1.png" alt="The Living Space 1">
+      <img src="images/living space -2.png" alt="The Living Space 2">
+      <img src="images/living space -3.png" alt="The Living Space 3">
+      <img src="images/living space -4.png" alt="The Living Space 4">
+      <img src="images/living space -5.png" alt="The Living Space 5">
+      <img src="images/living space -6.png" alt="The Living Space 6">
+      <img src="images/living space -7.png" alt="The Living Space 7">
+      <img src="images/living space -8.png" alt="The Living Space 8">
+      <video controls playsinline preload="metadata">
+        <source src="images/the living space- video.MP4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- AI Generated Music -->
+<div class="modal-overlay" id="modal-ai-music">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>AI Generated Music</h2>
+      <span class="project-tag">Generative &middot; AI</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/ai music -1.png" alt="AI Generated Music 1">
+      <img src="images/ai music -2.png" alt="AI Generated Music 2">
+      <video controls playsinline preload="metadata">
+        <source src="images/ai music video-1.mp4" type="video/mp4">
+      </video>
+      <video controls playsinline preload="metadata">
+        <source src="images/ai music video-2.mp4" type="video/mp4">
+      </video>
+      <video controls playsinline preload="metadata">
+        <source src="images/ai music video-3.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- Augmented Reality Project -->
+<div class="modal-overlay" id="modal-ar-project">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Augmented Reality Project</h2>
+      <span class="project-tag">AR &middot; Interactive</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/ar project-1.png" alt="AR Project 1">
+      <img src="images/ar project-2.png" alt="AR Project 2">
+      <img src="images/ar project-3.png" alt="AR Project 3">
+      <video controls playsinline preload="metadata">
+        <source src="images/ar video-1.mp4" type="video/mp4">
+      </video>
+      <video controls playsinline preload="metadata">
+        <source src="images/ar video-2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- Thermostatic Space -->
+<div class="modal-overlay" id="modal-thermostatic">
+  <button class="modal-back">&larr; Back</button>
+  <button class="modal-close" aria-label="Close"></button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Thermostatic Space</h2>
+      <span class="project-tag">Physical Computing &middot; Interactive</span>
+    </div>
+    <div class="modal-gallery">
+      <img src="images/thermostatic space-1.png" alt="Thermostatic Space">
+      <img src="images/thermostatic space-2.png" alt="Thermostatic Space 2">
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  document.documentElement.classList.add('js');
+
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  toggle.addEventListener('click', function() {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+  // Modal logic
+  document.querySelectorAll('.project-card[data-project]').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var id = 'modal-' + card.getAttribute('data-project');
+      var modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        modal.scrollTop = 0;
+      }
+    });
+  });
+
+  function closeModal(modal) {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    modal.querySelectorAll('video').forEach(function(v) { v.pause(); });
+  }
+
+  document.querySelectorAll('.modal-close, .modal-back').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      closeModal(btn.closest('.modal-overlay'));
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var active = document.querySelector('.modal-overlay.active');
+      if (active) closeModal(active);
+    }
+  });
+})();
+</script>
